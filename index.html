@@ -333,13 +333,39 @@
             border-radius: 6px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            cursor: pointer;
         }
         
         .cert-item:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        
+
+        .cert-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Indicador visual de que es clickeable */
+        .cert-item::after {
+            content: '🔗';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 14px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .cert-item:hover::after {
+            opacity: 1;
+        }
+
         /* Lista de intereses con estilo de tags */
         .interests {
             display: flex;
@@ -651,26 +677,31 @@
                     </div>
                     
                     <div class="cert-item">
+                        <a href="Microsoft Office Word 2016.pdf" target="_blank" class="cert-link"></a>
                         <div class="item-title">Microsoft Word</div>
                         <div class="item-description">Certificación oficial - Puntuación: 738/1000</div>
                     </div>
                     
                     <div class="cert-item">
+                        <a href="MX Habilidades Socioemocionales - FT Ed 4.pdf" target="_blank" class="cert-link"></a>
                         <div class="item-title">Conecta Empleo - Movistar</div>
                         <div class="item-description">MX Habilidades Socioemocionales - FT Ed 4</div>
                     </div>
-
+            
                     <div class="cert-item">
+                        <a href="MX Networking y Marketing Personal - FT Ed 6.pdf" target="_blank" class="cert-link"></a>
                         <div class="item-title">Conecta Empleo - Movistar</div>
                         <div class="item-description">MX Networking y Marketing Personal - FT Ed 6</div>
                     </div>
-
+            
                     <div class="cert-item">
+                        <a href="MX Redacción Corporativa - FT Ed 1.pdf" target="_blank" class="cert-link"></a>
                         <div class="item-title">Conecta Empleo - Movistar</div>
                         <div class="item-description">MX Redacción Corporativa - FT Ed 1</div>
                     </div>
                     
                     <div class="cert-item">
+                        <a href="Certificado Udemy, Virtual Box.jpg" target="_blank" class="cert-link"></a>
                         <div class="item-title">Virtualización de Sistemas Operativos con VirtualBox</div>
                         <div class="item-description">Udemy</div>
                     </div>
