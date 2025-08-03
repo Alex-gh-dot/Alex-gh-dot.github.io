@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - Garcia Hernandez Alex</title>
     <style>
-/* Variables para fácil personalización */
+/* Variables para fácil personalización - ACTUALIZADO A ESQUEMA PROFESIONAL */
 :root {
-    --primary-color: #2e8b57; /* Verde esmeralda */
-    --secondary-color: #3cb371; /* Verde menta más suave */
-    --accent-color: #f39c12; /* Naranja (lo dejamos igual si te gusta) */
-    --text-color: #2f4f4f; /* Gris verdoso oscuro para mantener contraste */
-    --light-text: #6b8e89; /* Verde grisáceo claro para subtítulos o textos suaves */
-    --background: #ecfdf5; /* Verde menta pálido para fondo general */
+    --primary-color: #2c3e50; /* Azul marino oscuro */
+    --secondary-color: #34495e; /* Gris azulado */
+    --accent-color: #3498db; /* Azul profesional */
+    --text-color: #2c3e50; /* Gris oscuro para texto */
+    --light-text: #7f8c8d; /* Gris medio para subtítulos */
+    --background: #ffffff; /* Fondo blanco */
     --card-bg: #ffffff; /* Fondo blanco para tarjetas */
     --sidebar-width: 320px;
 }
@@ -44,20 +44,20 @@
             overflow: hidden;
         }
         
-        /* Sidebar con diseño moderno */
+        /* Sidebar con diseño moderno - ACTUALIZADO */
         .sidebar {
             background-color: var(--primary-color);
             color: white;
             padding: 2.5rem 1.8rem;
         }
         
-        /* Contenedor de foto con borde degradado */
+        /* Contenedor de foto con borde degradado - ACTUALIZADO */
         .profile-photo {
             width: 200px;
             height: 200px;
             border-radius: 50%;
             margin: 0 auto 1.5rem;
-            background-color: #2c3e50;
+            background-color: var(--secondary-color);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -131,7 +131,7 @@
             font-size: 0.9rem;
         }
         
-        /* Barras de habilidades con efectos modernos */
+        /* Barras de habilidades con efectos modernos - ACTUALIZADO */
         .skill {
             margin-bottom: 1.2rem;
         }
@@ -188,7 +188,7 @@
             padding: 2.5rem;
         }
         
-        /* Encabezado con diseño limpio */
+        /* Encabezado con diseño limpio - ACTUALIZADO */
         .header {
             margin-bottom: 2rem;
             padding-bottom: 1.5rem;
@@ -217,7 +217,7 @@
             font-style: italic;
         }
         
-        /* Secciones principales */
+        /* Secciones principales - ACTUALIZADO */
         .content-section {
             margin-bottom: 2rem;
         }
@@ -241,7 +241,7 @@
             border-radius: 2px;
         }
         
-        /* Elementos de experiencia y educación */
+        /* Elementos de experiencia y educación - ACTUALIZADO */
         .timeline-item {
             margin-bottom: 1.5rem;
             padding-left: 1.5rem;
@@ -300,7 +300,7 @@
             margin-bottom: 0.6rem;
         }
         
-        /* Lista de detalles con estilo mejorado */
+        /* Lista de detalles con estilo mejorado - ACTUALIZADO */
         .item-details {
             list-style-type: none;
             padding-left: 0.5rem;
@@ -320,7 +320,7 @@
             left: 0;
         }
         
-        /* Grid para certificaciones */
+        /* Grid para certificaciones - ACTUALIZADO */
         .cert-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -335,6 +335,7 @@
             transition: transform 0.2s, box-shadow 0.2s;
             position: relative;
             cursor: pointer;
+            border-left: 3px solid var(--accent-color);
         }
         
         .cert-item:hover {
@@ -351,7 +352,7 @@
             z-index: 1;
         }
 
-        /* Indicador visual de que es clickeable */
+        /* Indicador visual de que es clickeable - ACTUALIZADO */
         .cert-item::after {
             content: '🔗';
             position: absolute;
@@ -366,7 +367,7 @@
             opacity: 1;
         }
 
-        /* Lista de intereses con estilo de tags */
+        /* Lista de intereses con estilo de tags - ACTUALIZADO */
         .interests {
             display: flex;
             flex-wrap: wrap;
@@ -382,32 +383,239 @@
             font-size: 0.9rem;
             display: inline-flex;
             align-items: center;
-            border: 1px solid rgba(46, 134, 193, 0.2);
+            border: 1px solid rgba(52, 73, 94, 0.2);
             transition: background-color 0.2s;
         }
         
         .interest-item:hover {
-            background-color: rgba(46, 134, 193, 0.1);
+            background-color: rgba(52, 73, 94, 0.1);
         }
         
-        /* Media queries para responsividad mejorada */
+        /* ESTILOS MEJORADOS PARA IMPRESIÓN - NUEVO */
         @media print {
+            @page {
+                size: A4;
+                margin: 0.5in;
+            }
+            
             body {
-                background-color: white;
+                background-color: white !important;
+                color: black !important;
+                font-size: 12px !important;
+                line-height: 1.4 !important;
             }
             
             .cv-container {
-                box-shadow: none;
-                margin: 0;
-                width: 100%;
+                box-shadow: none !important;
+                margin: 0 !important;
+                max-width: none !important;
+                width: 100% !important;
+                grid-template-columns: 250px 1fr !important;
+                border-radius: 0 !important;
+                display: grid !important;
+                height: auto !important;
+                page-break-inside: avoid;
+            }
+            
+            .sidebar {
+                background-color: #f8f9fa !important;
+                color: black !important;
+                padding: 1rem 1.2rem !important;
+                border-right: 2px solid #dee2e6;
+            }
+            
+            .profile-photo {
+                width: 120px !important;
+                height: 120px !important;
+                margin-bottom: 1rem !important;
+                border: 2px solid #dee2e6 !important;
+            }
+            
+            .profile-photo::after {
+                display: none !important;
+            }
+            
+            .section-heading {
+                font-size: 0.9rem !important;
+                margin-bottom: 0.8rem !important;
+                color: var(--primary-color) !important;
+            }
+            
+            .section-heading::after {
+                background: var(--primary-color) !important;
+            }
+            
+            .contact-item {
+                margin-bottom: 0.5rem !important;
+                font-size: 0.8rem !important;
+            }
+            
+            .contact-icon {
+                background-color: #dee2e6 !important;
+                color: var(--primary-color) !important;
+                min-width: 20px !important;
+                height: 20px !important;
+                font-size: 0.7rem !important;
+            }
+            
+            .skill {
+                margin-bottom: 0.8rem !important;
+            }
+            
+            .skill-name {
+                font-size: 0.8rem !important;
+                margin-bottom: 0.2rem !important;
+            }
+            
+            .skill-bar {
+                height: 4px !important;
+                background-color: #dee2e6 !important;
+            }
+            
+            .skill-level {
+                background: var(--primary-color) !important;
+            }
+            
+            .language {
+                background-color: #f8f9fa !important;
+                color: var(--primary-color) !important;
+                padding: 0.4rem 0.6rem !important;
+                margin-bottom: 0.6rem !important;
+                border: 1px solid #dee2e6 !important;
+            }
+            
+            .language-name {
+                font-size: 0.8rem !important;
+            }
+            
+            .language-level {
+                font-size: 0.7rem !important;
+            }
+            
+            .main-content {
+                padding: 1rem 1.5rem !important;
+            }
+            
+            .header {
+                margin-bottom: 1rem !important;
+                padding-bottom: 0.8rem !important;
+            }
+            
+            .name {
+                font-size: 1.6rem !important;
+                margin-bottom: 0.3rem !important;
+            }
+            
+            .profession {
+                font-size: 1rem !important;
+                margin-bottom: 0.6rem !important;
+            }
+            
+            .profile-summary {
+                padding: 0.8rem !important;
+                font-size: 0.85rem !important;
+                background-color: #f8f9fa !important;
+            }
+            
+            .content-section {
+                margin-bottom: 1.2rem !important;
+            }
+            
+            .content-title {
+                font-size: 1rem !important;
+                margin-bottom: 0.8rem !important;
+            }
+            
+            .timeline-item {
+                margin-bottom: 1rem !important;
+                padding-left: 1rem !important;
+                page-break-inside: avoid;
+            }
+            
+            .timeline-item::before {
+                width: 8px !important;
+                height: 8px !important;
+            }
+            
+            .timeline-item::after {
+                left: 3px !important;
+                width: 1px !important;
+            }
+            
+            .item-header {
+                margin-bottom: 0.2rem !important;
+            }
+            
+            .item-title {
+                font-size: 0.9rem !important;
+            }
+            
+            .item-date {
+                font-size: 0.7rem !important;
+                padding: 0.1rem 0.4rem !important;
+            }
+            
+            .item-subtitle {
+                font-size: 0.85rem !important;
+                margin-bottom: 0.3rem !important;
+            }
+            
+            .item-details {
+                padding-left: 0.3rem !important;
+                font-size: 0.8rem !important;
+            }
+            
+            .item-details li {
+                margin-bottom: 0.2rem !important;
+                padding-left: 0.8rem !important;
+            }
+            
+            .cert-grid {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 0.5rem !important;
+            }
+            
+            .cert-item {
+                padding: 0.6rem !important;
+                font-size: 0.8rem !important;
+                box-shadow: none !important;
+                border: 1px solid #dee2e6 !important;
+                border-left: 3px solid var(--accent-color) !important;
             }
             
             .cert-item:hover {
-                transform: none;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+                transform: none !important;
+                box-shadow: none !important;
+            }
+            
+            .cert-item::after {
+                display: none !important;
+            }
+            
+            .interests {
+                gap: 0.4rem !important;
+            }
+            
+            .interest-item {
+                font-size: 0.75rem !important;
+                padding: 0.3rem 0.6rem !important;
+                background-color: #f8f9fa !important;
+                color: var(--primary-color) !important;
+                border: 1px solid #dee2e6 !important;
+            }
+            
+            /* Forzar todo en una sola página */
+            .cv-container * {
+                page-break-inside: avoid !important;
+            }
+            
+            /* Ocultar elementos que no son necesarios en impresión */
+            .cert-link {
+                display: none !important;
             }
         }
         
+        /* Media queries para responsividad mejorada */
         @media (max-width: 900px) {
             :root {
                 --sidebar-width: 280px;
@@ -492,6 +700,11 @@
                 <div class="contact-item">
                     <div class="contact-icon">📍</div>
                     <div>Campeche - San Francisco de Campeche, México</div>
+                </div>
+                <!-- NUEVA SECCIÓN DE LICENCIA DE CONDUCIR -->
+                <div class="contact-item">
+                    <div class="contact-icon">🚗</div>
+                    <div>Licencia de Conducir: Vigente</div>
                 </div>
             </div>
             
@@ -670,12 +883,6 @@
                 <h3 class="content-title">Certificaciones</h3>
                 
                 <div class="cert-grid">
-                    <div class="cert-item">
-                        <a href="Microsoft Office PowerPoint® 2016.pdf" target="_blank" class="cert-link"></a>
-                        <div class="item-title">Microsoft PowerPoint</div>
-                        <div class="item-description">Certificación oficial - Puntuación: 850/1000</div>
-                    </div>
-                    
                     <div class="cert-item">
                         <a href="Microsoft Office Word 2016.pdf" target="_blank" class="cert-link"></a>
                         <div class="item-title">Microsoft Word</div>
