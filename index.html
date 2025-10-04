@@ -82,7 +82,7 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
-      transform: translateZ(0); /* acelera animación */
+      transform: translateZ(0);
       box-shadow: 0 6px 24px rgba(0,0,0,0.3);
     }
     .profile-photo::after {
@@ -170,7 +170,7 @@
       height: 100%;
       background: linear-gradient(90deg, #3b82f6, #06b6d4);
       border-radius: 999px;
-      width: 0; /* Animación desde 0 hasta el valor */
+      width: 0;
       transition: width 1.2s cubic-bezier(.2,.8,.2,1);
     }
 
@@ -314,40 +314,53 @@
     @media print {
       @page { size: A4; margin: 0.5in; }
 
-      body { background: white !important; color: black !important; font-size: 12px !important; line-height: 1.45 !important; }
+      /* Colores altos contrastes y sin degradados para impresoras */
+      body { background: #ffffff !important; color: #111 !important; font-size: 12px !important; line-height: 1.45 !important; }
       .cv-container {
         box-shadow: none !important; margin: 0 !important; max-width: none !important;
         width: 100% !important; grid-template-columns: 250px 1fr !important; border-radius: 0 !important;
       }
+
       .sidebar {
-        background: #f8f9fa !important; color: #111 !important; padding: 1rem 1.2rem !important; border-right: 2px solid #e5e7eb;
+        background: #f5f7fa !important; color: #111 !important; padding: 1rem 1.2rem !important; border-right: 2px solid #e5e7eb;
       }
       .profile-photo { width: 120px !important; height: 120px !important; margin-bottom: 1rem !important; border: 2px solid #e5e7eb !important; box-shadow: none !important; }
       .profile-photo::after { display: none !important; }
+
       .section-heading { font-size: 0.9rem !important; margin-bottom: 0.6rem !important; }
-      .contact-item { margin-bottom: 0.4rem !important; font-size: 0.8rem !important; }
+      .contact-item { margin-bottom: 0.38rem !important; font-size: 0.8rem !important; }
       .skill { margin-bottom: 0.6rem !important; }
       .skill-bar { height: 4px !important; background: #e5e7eb !important; }
-      .skill-level { background: #111 !important; }
-      .language { border: 1px solid #e5e7eb !important; background: #fafafa !important; color: #111 !important; padding: 0.35rem 0.5rem !important; }
+      .skill-level { background: #111 !important; width: var(--w) !important; } /* ancho fijo para que sí se vea en PDF */
+
       .main-content { padding: 1rem 1.2rem !important; }
       .name { font-size: 1.6rem !important; }
       .profession { font-size: 1rem !important; }
+      .profile-summary {
+        background: #fff !important; border-left: 3px solid #111 !important;
+        padding: 0.7rem 0.8rem !important;
+      }
+
       .content-title { font-size: 1rem !important; margin-bottom: 0.6rem !important; }
+      .content-title::before { background: #111 !important; }
       .timeline-item { margin-bottom: 0.8rem !important; padding-left: 1rem !important; }
-      .timeline-item::before { width: 8px !important; height: 8px !important; }
-      .timeline-item::after { left: 3px !important; width: 1px !important; }
+      .timeline-item::before { width: 8px !important; height: 8px !important; background: #111 !important; box-shadow: none !important; }
+      .timeline-item::after { left: 3px !important; width: 1px !important; background: #d1d5db !important; }
       .item-title { font-size: 0.9rem !important; }
-      .item-date { font-size: 0.7rem !important; padding: 0.1rem 0.4rem !important; }
+      .item-date { font-size: 0.7rem !important; padding: 0.1rem 0.4rem !important; background: #f1f5f9 !important; color: #111 !important; }
       .item-details { font-size: 0.78rem !important; }
       .interest-item { background: #fafafa !important; color: #111 !important; border: 1px solid #e5e7eb !important; }
 
-      /* Mostrar URLs tras los enlaces para PDF */
-      a[href]::after { content: " (" attr(href) ")"; font-size: 0.7em; color: #555; }
+      /* Ocultar URLs en impresión para un look más limpio */
+      a[href]::after { content: ""; }
+
       /* Evitar quiebres raros */
       .cv-container * { page-break-inside: avoid !important; }
       /* Quitar overlays clicables */
       .cert-link { display: none !important; }
+
+      /* Desactivar completamente animaciones en impresión */
+      * { animation: none !important; transition: none !important; }
     }
 
     /* =========================
@@ -367,7 +380,6 @@
       .profile-photo { width: 120px; height: 120px; }
     }
 
-    /* Respeto a preferencias de movimiento */
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition: none !important; }
     }
@@ -407,7 +419,6 @@
       <div class="contact-section reveal">
         <h3 class="section-heading">Habilidades</h3>
 
-        <!-- Reordenado para priorizar BackEnd/BD -->
         <div class="skill">
           <div class="skill-name">
             <span>Python/Flask</span>
@@ -421,10 +432,10 @@
         <div class="skill">
           <div class="skill-name">
             <span>MySQL/MongoDB</span>
-            <span class="skill-percentage">50%</span>
+            <span class="skill-percentage">65%</span>
           </div>
           <div class="skill-bar">
-            <div class="skill-level" style="--w:50%"></div>
+            <div class="skill-level" style="--w:65%"></div>
           </div>
         </div>
 
@@ -483,11 +494,11 @@
     <main class="main-content">
       <header class="header reveal">
         <h1 class="name">Garcia Hernandez Alex</h1>
-        <h2 class="profession">Desarrollador BackEnd (novato) — Ingeniero en Sistemas Computacionales</h2>
+        <h2 class="profession">Desarrollador BackEnd — Ingeniero en Sistemas Computacionales</h2>
         <div class="profile-summary">
-          Perfil orientado a BackEnd con bases sólidas en Python/Flask y administración de bases de datos (MySQL/MongoDB).
-          Construyo APIs limpias, organizo datos y colaboro con equipos para entregar funciones del lado del servidor.
-          Dispuesto a seguir aprendiendo e incorporando buenas prácticas para crecer profesionalmente.
+          Enfocado en desarrollo del lado del servidor con Python/Flask y prácticas de bases de datos
+          (consultas y modelado básico). Experiencia reciente en SEDUC apoyando tareas de backend
+          y colaboración con equipo. Busco aprender y aportar con soluciones claras y mantenibles.
         </div>
       </header>
 
@@ -496,14 +507,27 @@
 
         <div class="timeline-item">
           <div class="item-header">
+            <div class="item-title">Apoyo en BackEnd / Base de datos</div>
+            <div class="item-date">2025 — Actual</div>
+          </div>
+          <div class="item-subtitle">SEDUC — Prácticas profesionales / colaboración</div>
+          <ul class="item-details">
+            <li>Apoyo en endpoints REST con Flask y documentación de servicios.</li>
+            <li>Consultas SQL para reportes y ajustes menores a esquemas existentes.</li>
+            <li>Buenas prácticas: control de versiones, registro de incidencias y pruebas con Postman.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="item-header">
             <div class="item-title">Desarrollador BackEnd</div>
             <div class="item-date">Proyecto escolar</div>
           </div>
           <div class="item-subtitle">CowTrack</div>
           <ul class="item-details">
-            <li>Diseñé y documenté endpoints REST en Flask para operaciones CRUD y consulta de métricas.</li>
-            <li>Modelé tablas y relaciones en MySQL; creación de índices y consultas optimizadas.</li>
-            <li>Integración con FrontEnd mediante JSON y validación de entrada en el servidor.</li>
+            <li>Endpoints CRUD en Flask y validación básica en servidor.</li>
+            <li>Modelo relacional y consultas para indicadores.</li>
+            <li>Integración con FrontEnd mediante JSON.</li>
           </ul>
         </div>
 
@@ -514,22 +538,9 @@
           </div>
           <div class="item-subtitle">Zeleris</div>
           <ul class="item-details">
-            <li>Implementación de servicios y controladores; manejo de sesiones y autenticación básica.</li>
-            <li>Exposición de servicios para la capa visual (React/Vue) y pruebas con Postman.</li>
-            <li>Mejoras en performance: paginación, compresión de respuestas y caché simple.</li>
-          </ul>
-        </div>
-
-        <div class="timeline-item">
-          <div class="item-header">
-            <div class="item-title">Soporte Técnico</div>
-            <div class="item-date">2024 - 2025</div>
-          </div>
-          <div class="item-subtitle">P.F.I. — Servicio social</div>
-          <ul class="item-details">
-            <li>Apoyo en mantenimiento y organización de bases de datos.</li>
-            <li>Automatización de tareas y scripts básicos en Python.</li>
-            <li>Capacitación a usuarios y documentación de procesos.</li>
+            <li>Servicios y controladores; manejo de sesiones.</li>
+            <li>Exposición de APIs para la capa visual.</li>
+            <li>Paginación y pequeñas mejoras de performance.</li>
           </ul>
         </div>
       </section>
@@ -540,30 +551,14 @@
         <div class="timeline-item">
           <div class="item-header">
             <div class="item-title">Ingeniería en Sistemas Computacionales</div>
-            <div class="item-date">Generación 2021 – 2025 (Promedio 9.0)</div>
+            <div class="item-date">2021 – 2025 (Promedio 9.0)</div>
           </div>
           <div class="item-subtitle">Universidad Autónoma de Campeche</div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="item-header">
-            <div class="item-title">Bachillerato</div>
-            <div class="item-date">2018 – 2021 (Promedio 8.9)</div>
-          </div>
-          <div class="item-subtitle">Preparatoria Lic. Ermilo Sandoval Campos — UAC</div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="item-header">
-            <div class="item-title">Secundaria</div>
-            <div class="item-date">2015 – 2018 (Promedio 9.7)</div>
-          </div>
-          <div class="item-subtitle">Escuela Secundaria Técnica 27</div>
         </div>
       </section>
 
       <section class="content-section reveal">
-        <h3 class="content-title">Documentos y certificaciones</h3>
+        <h3 class="content-title">Documentos y constancias</h3>
 
         <div class="cert-grid">
 
@@ -571,19 +566,19 @@
           <div class="cert-item">
             <a href="Carta de Pasante.pdf" target="_blank" class="cert-link" aria-label="Abrir Carta de Pasante"></a>
             <div class="item-title">Carta de Pasante</div>
-            <div class="item-description">Documento oficial — Universidad Autónoma de Campeche</div>
+            <div class="item-description">Universidad Autónoma de Campeche</div>
           </div>
 
           <div class="cert-item">
             <a href="Microsoft Office PowerPoint® 2016.pdf" target="_blank" class="cert-link"></a>
             <div class="item-title">Microsoft PowerPoint</div>
-            <div class="item-description">Certificación oficial — Puntuación 850/1000</div>
+            <div class="item-description">Puntuación 850/1000</div>
           </div>
 
           <div class="cert-item">
             <a href="Microsoft Office Word 2016.pdf" target="_blank" class="cert-link"></a>
             <div class="item-title">Microsoft Word</div>
-            <div class="item-description">Certificación oficial — Puntuación 738/1000</div>
+            <div class="item-description">Puntuación 738/1000</div>
           </div>
 
           <div class="cert-item">
@@ -600,8 +595,7 @@
 
           <div class="cert-item">
             <a href="MX Redacción Corporativa - FT Ed 1.pdf" target="_blank" class="cert-link"></a>
-            <div class="item-title">Conecta Empleo — Movistar</div>
-            <div class="item-description">Redacción Corporativa — FT Ed. 1</div>
+            <div class="item-title">Redacción Corporativa — FT Ed. 1</div>
           </div>
 
           <div class="cert-item">
@@ -626,7 +620,7 @@
   </div>
 
   <script>
-    // Animación de aparición en scroll
+    // Animación de aparición en scroll (web)
     const revealEls = Array.from(document.querySelectorAll('.reveal'));
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -645,7 +639,6 @@
         if (e.isIntersecting) {
           const el = e.target;
           const w = el.style.getPropertyValue('--w') || '0%';
-          // Forzar animación desde 0 a --w
           requestAnimationFrame(() => { el.style.width = w; });
           io2.unobserve(el);
         }
