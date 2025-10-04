@@ -1,960 +1,657 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Garcia Hernandez Alex</title>
-    <style>
-/* Variables para fácil personalización - ACTUALIZADO A ESQUEMA PROFESIONAL */
-:root {
-    --primary-color: #2c3e50; /* Azul marino oscuro */
-    --secondary-color: #34495e; /* Gris azulado */
-    --accent-color: #3498db; /* Azul profesional */
-    --text-color: #2c3e50; /* Gris oscuro para texto */
-    --light-text: #7f8c8d; /* Gris medio para subtítulos */
-    --background: #ffffff; /* Fondo blanco */
-    --card-bg: #ffffff; /* Fondo blanco para tarjetas */
-    --sidebar-width: 320px;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV - Garcia Hernandez Alex</title>
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    /* =========================
+       Variables (Tema profesional)
+       ========================= */
+    :root {
+      --primary-color: #1f2937; /* Gris-azul oscuro */
+      --secondary-color: #334155; /* Slate 700 */
+      --accent-color: #3b82f6; /* Azul moderno */
+      --text-color: #1f2937;
+      --light-text: #6b7280;
+      --background: #ffffff;
+      --card-bg: #ffffff;
+      --sidebar-width: 320px;
+      --radius: 12px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    }
 
-        
-        /* Reset y estilos base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
-        }
-        
-        body {
-            background-color: var(--background);
-            color: var(--text-color);
-            line-height: 1.6;
-            font-size: 16px;
-        }
-        
-        /* Contenedor principal con grid más flexible */
-        .cv-container {
-            max-width: 1100px;
-            margin: 2rem auto;
-            display: grid;
-            grid-template-columns: var(--sidebar-width) 1fr;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        /* Sidebar con diseño moderno - ACTUALIZADO */
-        .sidebar {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 2.5rem 1.8rem;
-        }
-        
-        /* Contenedor de foto con borde degradado - ACTUALIZADO */
-        .profile-photo {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            background-color: var(--secondary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            border: none;
-            overflow: hidden;
-        }
-        
-        .profile-photo::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            padding: 4px;
-            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-        }
-        
-        .profile-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        
-        /* Información de contacto con iconos modernos */
-        .contact-section {
-            margin: 1.8rem 0;
-        }
-        
-        .section-heading {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        
-        .section-heading::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            height: 3px;
-            width: 50px;
-            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
-            border-radius: 2px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.8rem;
-        }
-        
-        .contact-icon {
-            min-width: 30px;
-            height: 30px;
-            margin-right: 10px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-        }
-        
-        /* Barras de habilidades con efectos modernos - ACTUALIZADO */
-        .skill {
-            margin-bottom: 1.2rem;
-        }
-        
-        .skill-name {
-            font-weight: 500;
-            margin-bottom: 0.4rem;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .skill-percentage {
-            opacity: 0.8;
-            font-size: 0.9rem;
-        }
-        
-        .skill-bar {
-            height: 6px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .skill-level {
-            height: 100%;
-            border-radius: 3px;
-            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
-            position: relative;
-            transition: width 1s ease-in-out;
-        }
-        
-        /* Idiomas con estilo de chips */
-        .language {
-            margin-bottom: 1rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 0.6rem 1rem;
-            border-radius: 4px;
-        }
-        
-        .language-name {
-            font-weight: 600;
-            margin-bottom: 0.2rem;
-        }
-        
-        .language-level {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        
-        /* Contenido principal con mejor espaciado */
-        .main-content {
-            background-color: var(--card-bg);
-            padding: 2.5rem;
-        }
-        
-        /* Encabezado con diseño limpio - ACTUALIZADO */
-        .header {
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        .name {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        .profession {
-            font-size: 1.2rem;
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-        
-        .profile-summary {
-            background-color: #f8f9fa;
-            padding: 1.2rem;
-            border-radius: 6px;
-            border-left: 4px solid var(--accent-color);
-            font-style: italic;
-        }
-        
-        /* Secciones principales - ACTUALIZADO */
-        .content-section {
-            margin-bottom: 2rem;
-        }
-        
-        .content-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 1.2rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .content-title::before {
-            content: '';
-            display: inline-block;
-            width: 8px;
-            height: 24px;
-            background-color: var(--secondary-color);
-            margin-right: 10px;
-            border-radius: 2px;
-        }
-        
-        /* Elementos de experiencia y educación - ACTUALIZADO */
-        .timeline-item {
-            margin-bottom: 1.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 6px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--secondary-color);
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 24px;
-            width: 2px;
-            height: calc(100% - 12px);
-            background-color: #e0e0e0;
-        }
-        
-        .timeline-item:last-child::after {
-            display: none;
-        }
-        
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.4rem;
-            flex-wrap: wrap;
-        }
-        
-        .item-title {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-        
-        .item-date {
-            color: var(--light-text);
-            font-style: italic;
-            background-color: #f5f5f5;
-            padding: 0.2rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-        }
-        
-        .item-subtitle {
-            font-weight: 500;
-            color: var(--secondary-color);
-            margin-bottom: 0.6rem;
-        }
-        
-        /* Lista de detalles con estilo mejorado - ACTUALIZADO */
-        .item-details {
-            list-style-type: none;
-            padding-left: 0.5rem;
-            margin-bottom: 0.8rem;
-        }
-        
-        .item-details li {
-            position: relative;
-            padding-left: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .item-details li::before {
-            content: "▹";
-            color: var(--accent-color);
-            position: absolute;
-            left: 0;
-        }
-        
-        /* Grid para certificaciones - ACTUALIZADO */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        
-        .cert-item {
-            background-color: #f8f9fa;
-            padding: 1rem;
-            border-radius: 6px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
-            cursor: pointer;
-            border-left: 3px solid var(--accent-color);
-        }
-        
-        .cert-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary-color: #e5e7eb;
+        --secondary-color: #cbd5e1;
+        --accent-color: #60a5fa;
+        --text-color: #e5e7eb;
+        --light-text: #9ca3af;
+        --background: #0b1220;
+        --card-bg: #0f172a;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      }
+    }
 
-        .cert-link {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
+    /* Reset & base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--background);
+      color: var(--text-color);
+      line-height: 1.6;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-        /* Indicador visual de que es clickeable - ACTUALIZADO */
-        .cert-item::after {
-            content: '🔗';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 14px;
-            opacity: 0.7;
-            transition: opacity 0.2s;
-        }
+    /* =========================
+       Layout principal
+       ========================= */
+    .cv-container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      display: grid;
+      grid-template-columns: var(--sidebar-width) 1fr;
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--card-bg);
+    }
 
-        .cert-item:hover::after {
-            opacity: 1;
-        }
+    /* =========================
+       Sidebar
+       ========================= */
+    .sidebar {
+      background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+      color: #ffffff;
+      padding: 2.5rem 1.8rem;
+    }
 
-        /* Lista de intereses con estilo de tags - ACTUALIZADO */
-        .interests {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 0.8rem;
-        }
-        
-        .interest-item {
-            background-color: #f0f6fc;
-            color: var(--secondary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            border: 1px solid rgba(52, 73, 94, 0.2);
-            transition: background-color 0.2s;
-        }
-        
-        .interest-item:hover {
-            background-color: rgba(52, 73, 94, 0.1);
-        }
-        
-        /* ESTILOS MEJORADOS PARA IMPRESIÓN - NUEVO */
-        @media print {
-            @page {
-                size: A4;
-                margin: 0.5in;
-            }
-            
-            body {
-                background-color: white !important;
-                color: black !important;
-                font-size: 12px !important;
-                line-height: 1.4 !important;
-            }
-            
-            .cv-container {
-                box-shadow: none !important;
-                margin: 0 !important;
-                max-width: none !important;
-                width: 100% !important;
-                grid-template-columns: 250px 1fr !important;
-                border-radius: 0 !important;
-                display: grid !important;
-                height: auto !important;
-                page-break-inside: avoid;
-            }
-            
-            .sidebar {
-                background-color: #f8f9fa !important;
-                color: black !important;
-                padding: 1rem 1.2rem !important;
-                border-right: 2px solid #dee2e6;
-            }
-            
-            .profile-photo {
-                width: 120px !important;
-                height: 120px !important;
-                margin-bottom: 1rem !important;
-                border: 2px solid #dee2e6 !important;
-            }
-            
-            .profile-photo::after {
-                display: none !important;
-            }
-            
-            .section-heading {
-                font-size: 0.9rem !important;
-                margin-bottom: 0.8rem !important;
-                color: var(--primary-color) !important;
-            }
-            
-            .section-heading::after {
-                background: var(--primary-color) !important;
-            }
-            
-            .contact-item {
-                margin-bottom: 0.5rem !important;
-                font-size: 0.8rem !important;
-            }
-            
-            .contact-icon {
-                background-color: #dee2e6 !important;
-                color: var(--primary-color) !important;
-                min-width: 20px !important;
-                height: 20px !important;
-                font-size: 0.7rem !important;
-            }
-            
-            .skill {
-                margin-bottom: 0.8rem !important;
-            }
-            
-            .skill-name {
-                font-size: 0.8rem !important;
-                margin-bottom: 0.2rem !important;
-            }
-            
-            .skill-bar {
-                height: 4px !important;
-                background-color: #dee2e6 !important;
-            }
-            
-            .skill-level {
-                background: var(--primary-color) !important;
-            }
-            
-            .language {
-                background-color: #f8f9fa !important;
-                color: var(--primary-color) !important;
-                padding: 0.4rem 0.6rem !important;
-                margin-bottom: 0.6rem !important;
-                border: 1px solid #dee2e6 !important;
-            }
-            
-            .language-name {
-                font-size: 0.8rem !important;
-            }
-            
-            .language-level {
-                font-size: 0.7rem !important;
-            }
-            
-            .main-content {
-                padding: 1rem 1.5rem !important;
-            }
-            
-            .header {
-                margin-bottom: 1rem !important;
-                padding-bottom: 0.8rem !important;
-            }
-            
-            .name {
-                font-size: 1.6rem !important;
-                margin-bottom: 0.3rem !important;
-            }
-            
-            .profession {
-                font-size: 1rem !important;
-                margin-bottom: 0.6rem !important;
-            }
-            
-            .profile-summary {
-                padding: 0.8rem !important;
-                font-size: 0.85rem !important;
-                background-color: #f8f9fa !important;
-            }
-            
-            .content-section {
-                margin-bottom: 1.2rem !important;
-            }
-            
-            .content-title {
-                font-size: 1rem !important;
-                margin-bottom: 0.8rem !important;
-            }
-            
-            .timeline-item {
-                margin-bottom: 1rem !important;
-                padding-left: 1rem !important;
-                page-break-inside: avoid;
-            }
-            
-            .timeline-item::before {
-                width: 8px !important;
-                height: 8px !important;
-            }
-            
-            .timeline-item::after {
-                left: 3px !important;
-                width: 1px !important;
-            }
-            
-            .item-header {
-                margin-bottom: 0.2rem !important;
-            }
-            
-            .item-title {
-                font-size: 0.9rem !important;
-            }
-            
-            .item-date {
-                font-size: 0.7rem !important;
-                padding: 0.1rem 0.4rem !important;
-            }
-            
-            .item-subtitle {
-                font-size: 0.85rem !important;
-                margin-bottom: 0.3rem !important;
-            }
-            
-            .item-details {
-                padding-left: 0.3rem !important;
-                font-size: 0.8rem !important;
-            }
-            
-            .item-details li {
-                margin-bottom: 0.2rem !important;
-                padding-left: 0.8rem !important;
-            }
-            
-            .cert-grid {
-                grid-template-columns: 1fr 1fr !important;
-                gap: 0.5rem !important;
-            }
-            
-            .cert-item {
-                padding: 0.6rem !important;
-                font-size: 0.8rem !important;
-                box-shadow: none !important;
-                border: 1px solid #dee2e6 !important;
-                border-left: 3px solid var(--accent-color) !important;
-            }
-            
-            .cert-item:hover {
-                transform: none !important;
-                box-shadow: none !important;
-            }
-            
-            .cert-item::after {
-                display: none !important;
-            }
-            
-            .interests {
-                gap: 0.4rem !important;
-            }
-            
-            .interest-item {
-                font-size: 0.75rem !important;
-                padding: 0.3rem 0.6rem !important;
-                background-color: #f8f9fa !important;
-                color: var(--primary-color) !important;
-                border: 1px solid #dee2e6 !important;
-            }
-            
-            /* Forzar todo en una sola página */
-            .cv-container * {
-                page-break-inside: avoid !important;
-            }
-            
-            /* Ocultar elementos que no son necesarios en impresión */
-            .cert-link {
-                display: none !important;
-            }
-        }
-        
-        /* Media queries para responsividad mejorada */
-        @media (max-width: 900px) {
-            :root {
-                --sidebar-width: 280px;
-            }
-            
-            .profile-photo {
-                width: 150px;
-                height: 150px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .cv-container {
-                grid-template-columns: 1fr;
-                margin: 0;
-                border-radius: 0;
-            }
-            
-            .sidebar {
-                padding: 2rem 1.5rem;
-            }
-            
-            .main-content {
-                padding: 2rem 1.5rem;
-            }
-            
-            .profile-photo {
-                width: 140px;
-                height: 140px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .item-header {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            .cert-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .main-content {
-                padding: 1.5rem 1.2rem;
-            }
-            
-            .profile-photo {
-                width: 120px;
-                height: 120px;
-            }
-        }
-    </style>
+    .profile-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      background-color: var(--secondary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(0); /* acelera animación */
+      box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+    }
+    .profile-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 4px;
+      background: conic-gradient(from 180deg, #334155, #3b82f6, #06b6d4, #334155);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: spin 6s linear infinite;
+      opacity: 0.6;
+    }
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .section-heading {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      margin: 1.8rem 0 1rem 0;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    .section-heading::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 64px;
+      background: linear-gradient(90deg, #3b82f6, #06b6d4);
+      border-radius: 2px;
+    }
+
+    .contact-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+      opacity: 0.95;
+    }
+    .contact-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.08);
+      font-size: 0.9rem;
+    }
+
+    /* =========================
+       Habilidades
+       ========================= */
+    .skill { margin-bottom: 1rem; }
+    .skill-name {
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.35rem;
+    }
+    .skill-percentage { opacity: 0.9; font-size: 0.85rem; }
+    .skill-bar {
+      height: 8px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+    .skill-level {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #06b6d4);
+      border-radius: 999px;
+      width: 0; /* Animación desde 0 hasta el valor */
+      transition: width 1.2s cubic-bezier(.2,.8,.2,1);
+    }
+
+    /* =========================
+       Main content
+       ========================= */
+    .main-content { padding: 2.5rem; }
+    .header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    .name {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      letter-spacing: 0.2px;
+      margin-bottom: 0.35rem;
+    }
+    .profession {
+      font-size: 1.15rem;
+      color: var(--secondary-color);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .profile-summary {
+      background: linear-gradient(180deg, rgba(59,130,246,0.07), rgba(59,130,246,0.0));
+      padding: 1rem 1.1rem;
+      border-radius: 10px;
+      border-left: 4px solid var(--accent-color);
+      font-style: normal;
+    }
+
+    .content-section { margin-bottom: 2rem; }
+    .content-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .content-title::before {
+      content: "";
+      width: 8px; height: 22px;
+      background: linear-gradient(180deg, #3b82f6, #06b6d4);
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    .timeline-item { margin-bottom: 1.2rem; padding-left: 1.5rem; position: relative; }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 6px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+    }
+    .timeline-item::after {
+      content: "";
+      position: absolute;
+      left: 5px; top: 24px;
+      width: 2px; height: calc(100% - 12px);
+      background: rgba(148, 163, 184, 0.3);
+    }
+    .timeline-item:last-child::after { display: none; }
+
+    .item-header { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 0.4rem; gap: 0.4rem; }
+    .item-title { font-weight: 700; color: var(--primary-color); }
+    .item-date {
+      color: var(--light-text);
+      font-style: italic;
+      background: rgba(148,163,184,0.15);
+      padding: 0.18rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+    .item-subtitle { font-weight: 600; color: var(--secondary-color); margin-bottom: 0.5rem; }
+    .item-details { list-style: none; padding-left: 0.5rem; }
+    .item-details li { position: relative; padding-left: 1.2rem; margin-bottom: 0.45rem; }
+    .item-details li::before {
+      content: "▹";
+      color: var(--accent-color);
+      position: absolute; left: 0; top: 0;
+    }
+
+    /* Certificaciones / Documentos */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .cert-item {
+      background: rgba(148,163,184,0.08);
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid rgba(148,163,184,0.25);
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+      cursor: pointer;
+    }
+    .cert-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+      border-color: rgba(59,130,246,0.6);
+    }
+    .cert-item .item-title { display: flex; align-items: center; gap: 8px; }
+    .cert-item .item-title::after { content: "↗"; font-size: 0.95rem; opacity: 0.7; }
+
+    .cert-link { position: absolute; inset: 0; z-index: 1; }
+
+    /* Intereses */
+    .interests { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .interest-item {
+      border: 1px solid rgba(148,163,184,0.25);
+      background: #f0f9ff;
+      color: #0f172a;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      transition: transform .15s;
+    }
+    .interest-item:hover { transform: translateY(-2px); }
+
+    /* =========================
+       Animaciones de aparición
+       ========================= */
+    .reveal { opacity: 0; transform: translateY(16px); }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    /* =========================
+       Modo impresión optimizado
+       ========================= */
+    @media print {
+      @page { size: A4; margin: 0.5in; }
+
+      body { background: white !important; color: black !important; font-size: 12px !important; line-height: 1.45 !important; }
+      .cv-container {
+        box-shadow: none !important; margin: 0 !important; max-width: none !important;
+        width: 100% !important; grid-template-columns: 250px 1fr !important; border-radius: 0 !important;
+      }
+      .sidebar {
+        background: #f8f9fa !important; color: #111 !important; padding: 1rem 1.2rem !important; border-right: 2px solid #e5e7eb;
+      }
+      .profile-photo { width: 120px !important; height: 120px !important; margin-bottom: 1rem !important; border: 2px solid #e5e7eb !important; box-shadow: none !important; }
+      .profile-photo::after { display: none !important; }
+      .section-heading { font-size: 0.9rem !important; margin-bottom: 0.6rem !important; }
+      .contact-item { margin-bottom: 0.4rem !important; font-size: 0.8rem !important; }
+      .skill { margin-bottom: 0.6rem !important; }
+      .skill-bar { height: 4px !important; background: #e5e7eb !important; }
+      .skill-level { background: #111 !important; }
+      .language { border: 1px solid #e5e7eb !important; background: #fafafa !important; color: #111 !important; padding: 0.35rem 0.5rem !important; }
+      .main-content { padding: 1rem 1.2rem !important; }
+      .name { font-size: 1.6rem !important; }
+      .profession { font-size: 1rem !important; }
+      .content-title { font-size: 1rem !important; margin-bottom: 0.6rem !important; }
+      .timeline-item { margin-bottom: 0.8rem !important; padding-left: 1rem !important; }
+      .timeline-item::before { width: 8px !important; height: 8px !important; }
+      .timeline-item::after { left: 3px !important; width: 1px !important; }
+      .item-title { font-size: 0.9rem !important; }
+      .item-date { font-size: 0.7rem !important; padding: 0.1rem 0.4rem !important; }
+      .item-details { font-size: 0.78rem !important; }
+      .interest-item { background: #fafafa !important; color: #111 !important; border: 1px solid #e5e7eb !important; }
+
+      /* Mostrar URLs tras los enlaces para PDF */
+      a[href]::after { content: " (" attr(href) ")"; font-size: 0.7em; color: #555; }
+      /* Evitar quiebres raros */
+      .cv-container * { page-break-inside: avoid !important; }
+      /* Quitar overlays clicables */
+      .cert-link { display: none !important; }
+    }
+
+    /* =========================
+       Responsividad
+       ========================= */
+    @media (max-width: 900px) { :root { --sidebar-width: 280px; } .profile-photo { width: 160px; height: 160px; } }
+    @media (max-width: 768px) {
+      .cv-container { grid-template-columns: 1fr; margin: 0; border-radius: 0; }
+      .sidebar { padding: 2rem 1.5rem; }
+      .main-content { padding: 2rem 1.5rem; }
+      .profile-photo { width: 140px; height: 140px; }
+    }
+    @media (max-width: 480px) {
+      .item-header { flex-direction: column; gap: 0.4rem; }
+      .cert-grid { grid-template-columns: 1fr; }
+      .main-content { padding: 1.4rem 1rem; }
+      .profile-photo { width: 120px; height: 120px; }
+    }
+
+    /* Respeto a preferencias de movimiento */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
 </head>
 <body>
-    <div class="cv-container">
-        <aside class="sidebar">
-            <div class="profile-photo">
-                <!-- Puedes reemplazar esto con tu foto -->
-                <img src="/Garcia Hernandez Alex.jpeg" alt="Foto de Perfil">
-            </div>
-            
-            <div class="contact-section">
-                <h3 class="section-heading">Contacto</h3>
-                <div class="contact-item">
-                    <div class="contact-icon">📧</div>
-                    <div>xela0aicrag@gmail.com</div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">📧</div>
-                    <div>al062587@uacam.mx</div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">📱</div>
-                    <div>+52 981-129-4886</div>
-                </div>
-                <!--
-                <div class="contact-item">
-                    <div class="contact-icon">🔗</div>
-                    <div>LinkedIn: tu-perfil</div>
-                </div>
-                -->
-                <div class="contact-item">
-                    <div class="contact-icon">📍</div>
-                    <div>Campeche - San Francisco de Campeche, México</div>
-                </div>
-                <!-- NUEVA SECCIÓN DE LICENCIA DE CONDUCIR -->
-                <div class="contact-item">
-                    <div class="contact-icon">🛵</div>
-                    <div>Licencia de Conducir: Vigente - Tipo M</div>
-                </div>
-            </div>
-            
-            <div class="contact-section">
-                <h3 class="section-heading">Habilidades</h3>
-                
-                <div class="skill">
-                    <div class="skill-name">
-                        <span>JavaScript/HTML/CSS</span>
-                        <span class="skill-percentage">90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 90%"></div>
-                    </div>
-                </div>
-                
-                <div class="skill">
-                    <div class="skill-name">
-                        <span>Java</span>
-                        <span class="skill-percentage">65%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 65%"></div>
-                    </div>
-                </div>
-                
-                <div class="skill">
-                    <div class="skill-name">
-                        <span>Python/Flask</span>
-                        <span class="skill-percentage">88%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 88%"></div>
-                    </div>
-                </div>
+  <div class="cv-container">
+    <aside class="sidebar">
+      <div class="profile-photo reveal">
+        <img src="/Garcia Hernandez Alex.jpeg" alt="Foto de Perfil" />
+      </div>
 
-                <div class="skill">
-                    <div class="skill-name">
-                        <span>Blender</span>
-                        <span class="skill-percentage">45%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 45%"></div>
-                    </div>
-                </div>
-                
-                <div class="skill">
-                    <div class="skill-name">
-                        <span>MySQL/MongoDB</span>
-                        <span class="skill-percentage">50%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 50%"></div>
-                    </div>
-                </div>
-                
-                <div class="skill">
-                    <div class="skill-name">
-                        <span>AWS</span>
-                        <span class="skill-percentage">45%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 45%"></div>
-                    </div>
-                </div>
-                
-                <div class="skill">
-                    <div class="skill-name">
-                        <span>Git/GitHub</span>
-                        <span class="skill-percentage">70%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 70%"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="contact-section">
-                <h3 class="section-heading">Idiomas</h3>
-                
-                <div class="language">
-                    <div class="language-name">Español</div>
-                    <div class="language-level">Nativo</div>
-                </div>
-                
-                <div class="language">
-                    <div class="language-name">Inglés</div>
-                    <div class="language-level">Intermedio (B1)</div>
-                </div>
-            </div>
-        </aside>
-        
-        <main class="main-content">
-            <header class="header">
-                <h1 class="name">Garcia Hernandez Alex</h1>
-                <h2 class="profession">Ingeniero en Sistemas Computacionales</h2>
-                <div class="profile-summary">
-                    Estoy empezando como desarrollador fullstack y he trabajado en algunos proyectos web, apps y también dando soporte técnico.
-                    Me gustan mucho las nuevas tecnologías y entusiasta al aprender nuevas formas de desarrollo.
-                    Me adapto bien tanto trabajando solo como en equipo, y trato de encontrar soluciones que funcionen bien y se puedan mejorar con el tiempo.
-                </div>
-            </header>
-            
-            <section class="content-section">
-                <h3 class="content-title">Experiencia Profesional</h3>
-                
-                <div class="timeline-item">
-                    <div class="item-header">
-                        <div class="item-title">Desarrollador fullstack</div>
-                        <div class="item-date">Proyecto Escolar</div>
-                    </div>
-                    <div class="item-subtitle">CowTrack</div>
-                    <ul class="item-details">
-                        <li>He trabajado en sitios web usando tecnologías actuales como parte del desarrollo</li>
-                        <li>Participé en equipos donde se organizaban bien para entregar proyectos importantes</li>
-                        <li>Me he encargado de mejorar bases de datos y algunas funciones del lado del servidor</li>                        
-                    </ul>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="item-header">
-                        <div class="item-title">DESARROLLADOR FRONTEND</div>
-                        <div class="item-date">Proyecto Academico</div>
-                    </div>
-                    <div class="item-subtitle">Zeleris</div>
-                    <ul class="item-details">
-                        <li>Creación de páginas web adaptables a distintos dispositivos usando HTML, CSS y JavaScript</li>
-                        <li>Uso de herramientas como React y Vue.js para desarrollar la parte visual de aplicaciones</li>
-                        <li>Mejoras en la velocidad y usabilidad de sitios web para una mejor experiencia del usuario</li>
-                    </ul>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="item-header">
-                        <div class="item-title">Soporte Técnico</div>
-                        <div class="item-date">2024 - 2025</div>
-                    </div>
-                    <div class="item-subtitle">P.F.I. - Servicio social</div>
-                    <ul class="item-details">
-                        <li>Diseño y programación de FrontEnd</li>
-                        <li>Organización y Mantenimiento de Base de datos</li>
-                        <li>Capacitación a usuarios finales en herramientas tecnológicas</li>
-                    </ul>
-                </div>
-            </section>
-            
-            <section class="content-section">
-                <h3 class="content-title">Formación Académica</h3>
-                
-                <div class="timeline-item">
-                    <div class="item-header">
-                        <div class="item-title">INGENIERÍA EN SISTEMAS COMPUTACIONALES</div>
-                        <div class="item-date">Graduación esperada: 2025</div>
-                    </div>
-                    <div class="item-subtitle">Universidad Autónoma de Campeche</div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="item-header">
-                        <div class="item-title">BACHILLERATO</div>
-                        <div class="item-date">2018 - 2021 (Promedio 8.9)</div>
-                    </div>
-                    <div class="item-subtitle">Preparatoria Lic. Ermilo Sandoval Campos - UAC</div>
-                </div>
+      <div class="contact-section reveal">
+        <h3 class="section-heading">Contacto</h3>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>xela0aicrag@gmail.com</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>al062587@uacam.mx</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>+52 981-129-4886</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>San Francisco de Campeche, México</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🛵</div>
+          <div>Licencia de Conducir: Vigente - Tipo M</div>
+        </div>
+      </div>
 
-                <div class="timeline-item">
-                    <div class="item-header">
-                        <div class="item-title">Secundaria</div>
-                        <div class="item-date">2015 - 2018 (Promedio 9.7)</div>
-                    </div>
-                    <div class="item-subtitle">Escuela Secundaria Técnica 27</div>
-                </div>
-            </section>
-            
-            <section class="content-section">
-                <h3 class="content-title">Certificaciones</h3>
-                
-                <div class="cert-grid">
+      <div class="contact-section reveal">
+        <h3 class="section-heading">Habilidades</h3>
 
-                    <div class="cert-item">
-                        <a href="Microsoft Office PowerPoint® 2016.pdf" target="_blank" class="cert-link"></a>
-                        <div class="item-title">Microsoft PowerPoint</div>
-                        <div class="item-description">Certificación oficial - Puntuación: 850/1000</div>
-                    </div>
+        <!-- Reordenado para priorizar BackEnd/BD -->
+        <div class="skill">
+          <div class="skill-name">
+            <span>Python/Flask</span>
+            <span class="skill-percentage">88%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="--w:88%"></div>
+          </div>
+        </div>
 
-                    <div class="cert-item">
-                        <a href="Microsoft Office Word 2016.pdf" target="_blank" class="cert-link"></a>
-                        <div class="item-title">Microsoft Word</div>
-                        <div class="item-description">Certificación oficial - Puntuación: 738/1000</div>
-                    </div>
-                    
-                    <div class="cert-item">
-                        <a href="MX Habilidades Socioemocionales - FT Ed 4.pdf" target="_blank" class="cert-link"></a>
-                        <div class="item-title">Conecta Empleo - Movistar</div>
-                        <div class="item-description">MX Habilidades Socioemocionales - FT Ed 4</div>
-                    </div>
-            
-                    <div class="cert-item">
-                        <a href="MX Networking y Marketing Personal - FT Ed 6.pdf" target="_blank" class="cert-link"></a>
-                        <div class="item-title">Conecta Empleo - Movistar</div>
-                        <div class="item-description">MX Networking y Marketing Personal - FT Ed 6</div>
-                    </div>
-            
-                    <div class="cert-item">
-                        <a href="MX Redacción Corporativa - FT Ed 1.pdf" target="_blank" class="cert-link"></a>
-                        <div class="item-title">Conecta Empleo - Movistar</div>
-                        <div class="item-description">MX Redacción Corporativa - FT Ed 1</div>
-                    </div>
-                    
-                    <div class="cert-item">
-                        <a href="Certificado Udemy, Virtual Box.jpg" target="_blank" class="cert-link"></a>
-                        <div class="item-title">Virtualización de Sistemas Operativos con VirtualBox</div>
-                        <div class="item-description">Udemy</div>
-                    </div>
-                </div>
-            </section>
-            
-            <!--
-            <section class="content-section">
-                <h3 class="content-title">Eventos y Participaciones</h3>
-                
-                <div class="timeline-item">
-                    <div class="item-header">
-                        <div class="item-title">HACKATHON NACIONAL</div>
-                        <div class="item-date">2024</div>
-                    </div>
-                    <div class="item-description">Finalista con proyecto de aplicación web para gestión de recursos</div>
-                </div>
+        <div class="skill">
+          <div class="skill-name">
+            <span>MySQL/MongoDB</span>
+            <span class="skill-percentage">50%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="--w:50%"></div>
+          </div>
+        </div>
 
-                <div class="timeline-item">
-                    <div class="item-header">
-                        <div class="item-title">CONFERENCIA TECNOLÓGICA</div>
-                        <div class="item-date">2023</div>
-                    </div>
-                    <div class="item-description">Participación como ponente sobre tendencias en desarrollo frontend</div>
-                </div>
-            </section>
-            -->
+        <div class="skill">
+          <div class="skill-name">
+            <span>JavaScript/HTML/CSS</span>
+            <span class="skill-percentage">90%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="--w:90%"></div>
+          </div>
+        </div>
 
-            <section class="content-section">
-                <h3 class="content-title">Intereses Profesionales</h3>
-                
-                <div class="interests">
-                    <div class="interest-item">Desarrollo web</div>
-                    <div class="interest-item">Ciberseguridad</div>
-                    <div class="interest-item">Cloud computing</div>
-                    <div class="interest-item">Inteligencia artificial</div>
-                </div>
-            </section>
-        </main>
-    </div>
+        <div class="skill">
+          <div class="skill-name">
+            <span>Java</span>
+            <span class="skill-percentage">65%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="--w:65%"></div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-name">
+            <span>AWS</span>
+            <span class="skill-percentage">45%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="--w:45%"></div>
+          </div>
+        </div>
+
+        <div class="skill">
+          <div class="skill-name">
+            <span>Git/GitHub</span>
+            <span class="skill-percentage">70%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-level" style="--w:70%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-section reveal">
+        <h3 class="section-heading">Idiomas</h3>
+        <div class="contact-item" style="grid-template-columns: 1fr;">
+          <div><strong>Español:</strong> Nativo</div>
+        </div>
+        <div class="contact-item" style="grid-template-columns: 1fr;">
+          <div><strong>Inglés:</strong> Intermedio (B1)</div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="header reveal">
+        <h1 class="name">Garcia Hernandez Alex</h1>
+        <h2 class="profession">Desarrollador BackEnd (novato) — Ingeniero en Sistemas Computacionales</h2>
+        <div class="profile-summary">
+          Perfil orientado a BackEnd con bases sólidas en Python/Flask y administración de bases de datos (MySQL/MongoDB).
+          Construyo APIs limpias, organizo datos y colaboro con equipos para entregar funciones del lado del servidor.
+          Dispuesto a seguir aprendiendo e incorporando buenas prácticas para crecer profesionalmente.
+        </div>
+      </header>
+
+      <section class="content-section reveal">
+        <h3 class="content-title">Experiencia Profesional</h3>
+
+        <div class="timeline-item">
+          <div class="item-header">
+            <div class="item-title">Desarrollador BackEnd</div>
+            <div class="item-date">Proyecto escolar</div>
+          </div>
+          <div class="item-subtitle">CowTrack</div>
+          <ul class="item-details">
+            <li>Diseñé y documenté endpoints REST en Flask para operaciones CRUD y consulta de métricas.</li>
+            <li>Modelé tablas y relaciones en MySQL; creación de índices y consultas optimizadas.</li>
+            <li>Integración con FrontEnd mediante JSON y validación de entrada en el servidor.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="item-header">
+            <div class="item-title">Desarrollador BackEnd (apoyo FrontEnd)</div>
+            <div class="item-date">Proyecto académico</div>
+          </div>
+          <div class="item-subtitle">Zeleris</div>
+          <ul class="item-details">
+            <li>Implementación de servicios y controladores; manejo de sesiones y autenticación básica.</li>
+            <li>Exposición de servicios para la capa visual (React/Vue) y pruebas con Postman.</li>
+            <li>Mejoras en performance: paginación, compresión de respuestas y caché simple.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="item-header">
+            <div class="item-title">Soporte Técnico</div>
+            <div class="item-date">2024 - 2025</div>
+          </div>
+          <div class="item-subtitle">P.F.I. — Servicio social</div>
+          <ul class="item-details">
+            <li>Apoyo en mantenimiento y organización de bases de datos.</li>
+            <li>Automatización de tareas y scripts básicos en Python.</li>
+            <li>Capacitación a usuarios y documentación de procesos.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-section reveal">
+        <h3 class="content-title">Formación Académica</h3>
+
+        <div class="timeline-item">
+          <div class="item-header">
+            <div class="item-title">Ingeniería en Sistemas Computacionales</div>
+            <div class="item-date">Generación 2021 – 2025 (Promedio 9.0)</div>
+          </div>
+          <div class="item-subtitle">Universidad Autónoma de Campeche</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="item-header">
+            <div class="item-title">Bachillerato</div>
+            <div class="item-date">2018 – 2021 (Promedio 8.9)</div>
+          </div>
+          <div class="item-subtitle">Preparatoria Lic. Ermilo Sandoval Campos — UAC</div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="item-header">
+            <div class="item-title">Secundaria</div>
+            <div class="item-date">2015 – 2018 (Promedio 9.7)</div>
+          </div>
+          <div class="item-subtitle">Escuela Secundaria Técnica 27</div>
+        </div>
+      </section>
+
+      <section class="content-section reveal">
+        <h3 class="content-title">Documentos y certificaciones</h3>
+
+        <div class="cert-grid">
+
+          <!-- Carta de Pasante -->
+          <div class="cert-item">
+            <a href="Carta de Pasante.pdf" target="_blank" class="cert-link" aria-label="Abrir Carta de Pasante"></a>
+            <div class="item-title">Carta de Pasante</div>
+            <div class="item-description">Documento oficial — Universidad Autónoma de Campeche</div>
+          </div>
+
+          <div class="cert-item">
+            <a href="Microsoft Office PowerPoint® 2016.pdf" target="_blank" class="cert-link"></a>
+            <div class="item-title">Microsoft PowerPoint</div>
+            <div class="item-description">Certificación oficial — Puntuación 850/1000</div>
+          </div>
+
+          <div class="cert-item">
+            <a href="Microsoft Office Word 2016.pdf" target="_blank" class="cert-link"></a>
+            <div class="item-title">Microsoft Word</div>
+            <div class="item-description">Certificación oficial — Puntuación 738/1000</div>
+          </div>
+
+          <div class="cert-item">
+            <a href="MX Habilidades Socioemocionales - FT Ed 4.pdf" target="_blank" class="cert-link"></a>
+            <div class="item-title">Conecta Empleo — Movistar</div>
+            <div class="item-description">Habilidades Socioemocionales — FT Ed. 4</div>
+          </div>
+
+          <div class="cert-item">
+            <a href="MX Networking y Marketing Personal - FT Ed 6.pdf" target="_blank" class="cert-link"></a>
+            <div class="item-title">Conecta Empleo — Movistar</div>
+            <div class="item-description">Networking y Marketing Personal — FT Ed. 6</div>
+          </div>
+
+          <div class="cert-item">
+            <a href="MX Redacción Corporativa - FT Ed 1.pdf" target="_blank" class="cert-link"></a>
+            <div class="item-title">Conecta Empleo — Movistar</div>
+            <div class="item-description">Redacción Corporativa — FT Ed. 1</div>
+          </div>
+
+          <div class="cert-item">
+            <a href="Certificado Udemy, Virtual Box.jpg" target="_blank" class="cert-link"></a>
+            <div class="item-title">Virtualización con VirtualBox</div>
+            <div class="item-description">Udemy</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section reveal">
+        <h3 class="content-title">Intereses Profesionales</h3>
+        <div class="interests">
+          <div class="interest-item">BackEnd</div>
+          <div class="interest-item">Base de Datos</div>
+          <div class="interest-item">Big Data</div>
+          <div class="interest-item">Cloud computing</div>
+          <div class="interest-item">Inteligencia artificial</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Animación de aparición en scroll
+    const revealEls = Array.from(document.querySelectorAll('.reveal'));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+
+    // Animar barras de habilidad cuando aparecen
+    const skillBars = document.querySelectorAll('.skill-level');
+    const io2 = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const el = e.target;
+          const w = el.style.getPropertyValue('--w') || '0%';
+          // Forzar animación desde 0 a --w
+          requestAnimationFrame(() => { el.style.width = w; });
+          io2.unobserve(el);
+        }
+      });
+    }, { threshold: 0.2 });
+    skillBars.forEach(el => io2.observe(el));
+  </script>
 </body>
 </html>
